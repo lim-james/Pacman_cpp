@@ -12,13 +12,13 @@ bool Pacman::didPress(uint key) {
 }
 
 void Pacman::keyActions() {
-	if (didPress('W')) {
+	if (didPress('W') || didPress(VK_UP)) {
 		direction = Vec2(0, -1);
-	} else if (didPress('A')) {
+	} else if (didPress('A') || didPress(VK_LEFT)) {
 		direction = Vec2(-1, 0);
-	} else if (didPress('S')) {
+	} else if (didPress('S') || didPress(VK_DOWN)) {
 		direction = Vec2(0, 1);
-	} else if (didPress('D')) {
+	} else if (didPress('D') || didPress(VK_RIGHT)) {
 		direction = Vec2(1, 0);
 	}
 }
@@ -36,7 +36,7 @@ void Pacman::kill() {
 	position = origin;
 }
 
-bool Pacman::hasLivesLeft() {
+uint Pacman::livesLeft() {
 	return lives;
 }
 

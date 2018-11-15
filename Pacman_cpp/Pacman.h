@@ -17,7 +17,7 @@ public:
 	Pacman();
 	Pacman(const uint x, const uint y);
 
-	bool hasLivesLeft();
+	uint livesLeft();
 
 	virtual void kill();
 	virtual void update(Walls& walls);

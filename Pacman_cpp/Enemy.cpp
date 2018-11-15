@@ -27,6 +27,7 @@ void Enemy::render() {
 }
 
 void Enemy::kill() {
+	clearRender();
 	position = origin;
 }
 

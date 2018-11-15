@@ -6,6 +6,7 @@
 #include "Pacman.h"
 
 class Enemy : public Character {
+
 private:
 
 	Vec2 randomDirection();
@@ -13,6 +14,7 @@ private:
 	virtual void init();
 
 public:
+
 	static uint inDanger;
 
 	Enemy();
@@ -24,6 +26,7 @@ public:
 	virtual void update(Walls& walls);
 
 	~Enemy();
+
 };
 
 #endif

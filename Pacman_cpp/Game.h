@@ -8,6 +8,9 @@
 
 class Game {
 private:
+	uint moves;
+	uint score;
+
 	Walls walls;
 	
 	Pacman pacman;
@@ -26,9 +29,17 @@ private:
 		PowerPallet(26, 23)
 	};
 
+	void resizeWindow();
 	void hideCursor();
+	void disableSelection();
 
+	void resetEnemies();
 	void interactions(Enemy& e, Pacman& p);
+
+	void renderReady();
+	void renderScore();
+	void renderMoves();
+	void renderLives();
 
 public:
 	Game();

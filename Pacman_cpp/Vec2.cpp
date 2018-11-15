@@ -33,7 +33,7 @@ bool Vec2::operator == (const Vec2& rhs) {
 COORD Vec2::coord() {
 	COORD c;
 	c.X = x + 5;
-	c.Y = y + 5;
+	c.Y = y + 8;
 	return c;
 }
 
