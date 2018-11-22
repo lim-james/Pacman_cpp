@@ -2,29 +2,33 @@
 
 #include <ctime>
 
-void Game::resizeWindow() {
-	HWND hwnd = GetConsoleWindow();
-	RECT rect = { 100, 100, 750, 650 }; // lef top right bottom
-	MoveWindow(hwnd, rect.top, rect.left, rect.bottom - rect.top, rect.right - rect.left, TRUE);
+void Game::renderReady() {
+	Console::draw(Vec2(11, 17), "READY!", yellow);
+	Sleep(2000);
+	Console::clear(Vec2(11, 17), Vec2(6, 1));
 }
 
-void Game::hideCursor() {
-	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
-	CONSOLE_CURSOR_INFO cursorInfo;
-	GetConsoleCursorInfo(out, &cursorInfo);
-	cursorInfo.bVisible = false;
-	SetConsoleCursorInfo(out, &cursorInfo);
+void Game::renderScore() {
+	std::string msg = "Score : " + std::to_string(this->score);
+	Console::draw(Vec2(0, -4), msg, white);
 }
 
-void Game::disableSelection() {
-	HANDLE in = GetStdHandle(STD_INPUT_HANDLE);
-	SetConsoleMode(in, ENABLE_EXTENDED_FLAGS);
+void Game::renderMoves() {
+	std::string msg = "Moves : " + std::to_string(this->moves);
+	Console::draw(Vec2(0, -3), msg, white);
+}
+
+void Game::renderLives() {
+	Console::clear(Vec2(0, -2), Vec2(15, 1));
+	std::string msg = "Lives : ";
+	Console::draw(Vec2(0, -2), msg, white);
+	for (uint i = 0; i < pacman.livesLeft(); ++i) {
+		Console::draw(Vec2(msg.length() + i * 2, -2), 'C', yellow);
+	}
 }
 
 void Game::resetEnemies() {
-	for (Enemy& e : enemies) {
-		e.kill();
-	}
+	for (Enemy& e : enemies) e.kill();
 }
 
 void Game::interactions(Enemy& e, Pacman& p) {
@@ -42,39 +46,17 @@ void Game::interactions(Enemy& e, Pacman& p) {
 	}
 }
 
-void Game::renderReady() {
-	Vec2(11, 17).draw("READY!", yellow);
-	Sleep(2000);
-	Vec2(11, 17).draw("      ", white);
-}
-
-void Game::renderScore() {
-	std::string msg = "Score : " + std::to_string(this->score);
-	Vec2(0, -4).draw(msg.c_str(), white);
-}
-
-void Game::renderMoves() {
-	std::string msg = "Moves : " + std::to_string(this->moves);
-	Vec2(0, -3).draw(msg.c_str(), white);
-}
-
-void Game::renderLives() {
-	Vec2(0, -2).draw("              ", white);
-	std::string msg = "Lives : ";
-	Vec2(0, -2).draw(msg.c_str(), white);
-	for (int i = 0; i < pacman.livesLeft(); ++i) {
-		Vec2(msg.length() + i * 2, -2).draw('C', yellow);
-	}
-}
-
 Game::Game() : score(0), moves(0) {}
 
 void Game::init() {
 	srand((uint)time(NULL));
 
-	resizeWindow();
-	hideCursor();
-	disableSelection();
+	Console::resizeWindow({ 100, 100, 750, 650 });
+	Console::setTitle("PACMAN");
+	Console::hideCursor();
+	Console::disableSelection();
+	Console::disableResize();
+	Console::setBackgroundColour(black);
 
 	walls.load("Walls.txt");
 	pacman = Pacman(13, 23);
@@ -98,7 +80,7 @@ void Game::loop() {
 			if (p.isTaken()) continue;
 			if (pacman.collided(p)) {
 				p.take();
-				Enemy::inDanger = 20;
+				Enemy::inDanger = 30;
 			}
 			p.render();
 		}

@@ -29,6 +29,4 @@ bool Walls::collide(Vec2 point) {
 	return false;
 }
 
-Walls::~Walls()
-{
-}
+Walls::~Walls() {}

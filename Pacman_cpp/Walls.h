@@ -7,6 +7,7 @@
 #include "Wall.h"
 
 class Walls {
+
 private:
 
 	std::vector<Wall> walls;
@@ -21,6 +22,7 @@ public:
 	bool collide(Vec2 point); // returns if point is inside 
 
 	~Walls();
+
 };
 
 #endif

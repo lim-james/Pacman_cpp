@@ -11,14 +11,7 @@ bool Wall::contains(Vec2 point) {
 }
 
 void Wall::render() {
-	Vec2 point;
-	for (int x = 0; x < size.x; ++x) {
-		point.x = position.x + x;
-		for (int y = 0; y < size.y; ++y) {
-			point.y = position.y + y;
-			point.draw(icon, colour);
-		}
-	}
+	Console::draw(position, size, colour);
 }
 
 Wall::~Wall() {}

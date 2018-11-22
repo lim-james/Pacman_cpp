@@ -5,7 +5,9 @@
 #include "PowerPallet.h"
 
 class Pacman : public Character {
+
 private:
+
 	uint lives;
 	
 	bool didPress(uint key);
@@ -14,6 +16,7 @@ private:
 	virtual void init();
 
 public:
+
 	Pacman();
 	Pacman(const uint x, const uint y);
 
@@ -23,6 +26,7 @@ public:
 	virtual void update(Walls& walls);
 
 	~Pacman();
+
 };
 
 #endif

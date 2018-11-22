@@ -4,7 +4,9 @@
 #include "Object.h"
 
 class Wall : public Object {
+
 public:
+
 	Wall();
 	Wall(const uint x, const uint y, const uint width, const uint height);
 
@@ -13,6 +15,7 @@ public:
 	virtual void render();
 
 	~Wall();
+
 };
 
 #endif 

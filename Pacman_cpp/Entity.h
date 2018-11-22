@@ -4,6 +4,7 @@
 #include "Object.h"
 
 class Entity : public Object {
+
 protected:
 
 	Entity();
@@ -17,6 +18,7 @@ public:
 
 	bool collided(Entity& c);
 	virtual void render();
+
 };
 
 #endif

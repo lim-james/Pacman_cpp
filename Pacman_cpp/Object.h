@@ -2,9 +2,13 @@
 #define OBJECT_H
 
 #include "Vec2.h"
+#include "Colour.h"
+#include "Console.h"
 
 class Object {
+
 protected:
+
 	Vec2 position, size;
 	char icon;
 	Colour colour;
@@ -15,7 +19,9 @@ protected:
 	~Object();
 
 public:
+
 	virtual void render() = 0;
+
 };
 
 #endif

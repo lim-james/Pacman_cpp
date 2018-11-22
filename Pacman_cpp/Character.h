@@ -5,6 +5,7 @@
 #include "Entity.h"
 
 class Character : public Entity {
+
 protected:
 
 	Vec2 origin;
@@ -16,12 +17,14 @@ protected:
 	void clearRender();
 
 	bool wallAhead(Walls& walls);
+	bool wallAhead(Walls& walls, Vec2 dir);
 	void move();
 
 	virtual void kill() = 0;
 	virtual void update(Walls& walls) = 0;
 
 	~Character();
+
 };
 
 #endif

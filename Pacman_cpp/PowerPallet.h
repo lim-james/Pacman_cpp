@@ -4,11 +4,14 @@
 #include "Entity.h"
 
 class PowerPallet : public Entity {
+
 private:
+
 	bool taken;
 
 	virtual void init();
 public:
+
 	PowerPallet();
 	PowerPallet(const uint x, const uint y);
 
@@ -16,6 +19,7 @@ public:
 	void take();
 
 	~PowerPallet();
+
 };
 
 #endif

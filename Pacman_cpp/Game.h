@@ -7,7 +7,9 @@
 #include "PowerPallet.h"
 
 class Game {
+
 private:
+
 	uint moves;
 	uint score;
 
@@ -29,17 +31,13 @@ private:
 		PowerPallet(26, 23)
 	};
 
-	void resizeWindow();
-	void hideCursor();
-	void disableSelection();
-
-	void resetEnemies();
-	void interactions(Enemy& e, Pacman& p);
-
 	void renderReady();
 	void renderScore();
 	void renderMoves();
 	void renderLives();
+
+	void resetEnemies();
+	void interactions(Enemy& e, Pacman& p);
 
 public:
 	Game();
@@ -48,6 +46,7 @@ public:
 	void loop();
 
 	~Game();
+
 };
 
 #endif

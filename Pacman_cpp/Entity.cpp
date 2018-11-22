@@ -12,5 +12,5 @@ bool Entity::collided(Entity& c) {
 }
 
 void Entity::render() {
-	position.draw(icon, colour);
+	Console::draw(position, icon, colour);
 }

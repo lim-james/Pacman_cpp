@@ -23,7 +23,15 @@ Enemy::Enemy(const uint x, const uint y, const Colour c)
 }
 
 void Enemy::render() {
-	position.draw(icon, inDanger ? blue : colour);
+	Colour fill = colour;
+	if (inDanger) {
+		if (inDanger < 20) {
+			fill = inDanger % 4 ? blue : white;
+		} else {
+			fill = blue;
+		}
+	}
+	Console::draw(position, icon, fill);
 }
 
 void Enemy::kill() {
@@ -32,9 +40,20 @@ void Enemy::kill() {
 }
 
 void Enemy::update(Walls& walls) {
-	while (wallAhead(walls)) {
-		direction = randomDirection();
+	if (wallAhead(walls)) {
+		while (wallAhead(walls)) {
+			direction = randomDirection();
+		}
+	} else {
+		if (!wallAhead(walls, Vec2(direction.y, direction.x)) && rand() % 2) {
+			direction = Vec2(direction.y, direction.x);
+		}
+
+		if (!wallAhead(walls, Vec2(direction.y, -direction.x)) && rand() % 2) {
+			direction = Vec2(direction.y, -direction.x);
+		}
 	}
+
 	clearRender();
 	move();
 	render();
